@@ -1,0 +1,43 @@
+<!-- views/form.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Form</title>
+</head>
+<body>
+    <h1>Calculator</h1>
+    <form action="/submit" method="post">
+        <label for="num1">Number 1:</label>
+        <input type="text" id="num1" name="num1" required><br>
+
+        <label for="num2">Number 2:</label>
+        <input type="text" id="num2" name="num2" required><br>
+
+        <select name="operator" id="operator">
+            <option value="+">Add</option>
+            <option value="-">Subtract</option>
+            <option value="*">Multiply</option>
+            <option value="/">Divide</option>
+        </select>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- Display result here -->
+    <div id="result"></div>
+
+    <script>
+        // Assuming you have jQuery included for simplicity
+        $('form').submit(function (event) {
+            event.preventDefault();
+
+            $.post($(this).attr('action'), $(this).serialize(), function (data) {
+                $('#result').text(data);
+            });
+        });
+    </script>
+</body>
+</html>
